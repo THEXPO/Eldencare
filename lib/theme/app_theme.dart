@@ -14,6 +14,11 @@ class EldenColors {
   static const Color warning = Color(0xFFB7791F);
   static const Color discrepancy = Color(0xFFB5473A);
   static const Color pending = Color(0xFF3D6B99);
+
+  // Aliases for layout consistency
+  static const Color background = sand;
+  static const Color text = ink;
+  static const Color border = Color(0xFFE2E8F0);
 }
 
 class AppTheme {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../config/api_config.dart';
 import '../../models/app_notification.dart';
 import '../../models/notification_preferences.dart';
 import '../../providers/notification_provider.dart';
@@ -302,6 +303,48 @@ class _NotificationPreferencesScreenState
                               color: fcmToken != null
                                   ? EldenColors.success
                                   : EldenColors.muted,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                const Divider(height: 1),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: EldenColors.teal.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Icon(
+                        Icons.cloud_sync_outlined,
+                        color: EldenColors.teal,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Connected Cloud Backend',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            ApiConfig.baseUrl,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: EldenColors.teal,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

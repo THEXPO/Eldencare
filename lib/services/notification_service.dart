@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,11 +33,18 @@ class NotificationService {
       debugPrint('FCM Authorization Status: ${settings.authorizationStatus}');
 
       // 2. Retrieve FCM Device Registration Token
-      if (kIsWeb) {
-        // Web requires VAPID key if configured
-        _currentToken = await _messaging!.getToken();
-      } else {
-        _currentToken = await _messaging!.getToken();
+      try {
+        if (kIsWeb) {
+          const vapidKey =
+              String.fromEnvironment('FIREBASE_VAPID_KEY', defaultValue: '');
+          _currentToken = await _messaging!.getToken(
+            vapidKey: vapidKey.isNotEmpty ? vapidKey : null,
+          );
+        } else {
+          _currentToken = await _messaging!.getToken();
+        }
+      } catch (tokenErr) {
+        debugPrint('FCM token retrieval note (web/platform): $tokenErr');
       }
 
       if (_currentToken != null) {

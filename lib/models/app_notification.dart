@@ -8,6 +8,7 @@ class AppNotification {
     this.relatedEntityType,
     this.relatedEntityId,
     this.readAt,
+    this.metadata,
   });
 
   final String id;
@@ -18,6 +19,7 @@ class AppNotification {
   final String? relatedEntityType;
   final String? relatedEntityId;
   final DateTime? readAt;
+  final Map<String, dynamic>? metadata;
 
   bool get isRead => readAt != null;
 
@@ -30,6 +32,7 @@ class AppNotification {
     String? relatedEntityType,
     String? relatedEntityId,
     DateTime? readAt,
+    Map<String, dynamic>? metadata,
   }) {
     return AppNotification(
       id: id ?? this.id,
@@ -40,6 +43,7 @@ class AppNotification {
       relatedEntityType: relatedEntityType ?? this.relatedEntityType,
       relatedEntityId: relatedEntityId ?? this.relatedEntityId,
       readAt: readAt ?? this.readAt,
+      metadata: metadata ?? this.metadata,
     );
   }
 
@@ -52,6 +56,7 @@ class AppNotification {
     'related_entity_type': relatedEntityType,
     'related_entity_id': relatedEntityId,
     'read_at': readAt?.toIso8601String(),
+    if (metadata != null) 'metadata': metadata,
   };
 
   factory AppNotification.fromJson(Map<String, dynamic> json) {
@@ -68,6 +73,7 @@ class AppNotification {
       readAt: json['read_at'] != null
           ? DateTime.tryParse(json['read_at'].toString())
           : null,
+      metadata: json['metadata'] as Map<String, dynamic>?,
     );
   }
 }

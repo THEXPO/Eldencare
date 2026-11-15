@@ -1,4 +1,5 @@
 import { Request } from 'express';
+import { ParamsDictionary, Query } from 'express-serve-static-core';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 export type AppRole = 'patient' | 'caretaker' | 'doctor';
@@ -13,7 +14,12 @@ export interface AuthenticatedUser {
   authorizedPatientIds: string[];
 }
 
-export interface AuthenticatedRequest extends Request {
+export interface AuthenticatedRequest<
+  P = ParamsDictionary,
+  ResBody = any,
+  ReqBody = any,
+  ReqQuery = Query
+> extends Request<P, ResBody, ReqBody, ReqQuery> {
   user?: AuthenticatedUser;
   token?: string;
   supabase?: SupabaseClient;

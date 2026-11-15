@@ -1,1 +1,38 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"eldencare","appId":"1:1031144470704:android:59f2752a12eda0f49d6375","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"eldencare","configurations":{"android":"1:1031144470704:android:59f2752a12eda0f49d6375","ios":"1:1031144470704:ios:e81aa003f3d981549d6375","web":"1:1031144470704:web:cd12c4f11a063caa9d6375","windows":"1:1031144470704:web:c31f4b53259829c09d6375"}}}}}}
+{
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "eldencare",
+          "appId": "1:1031144470704:android:59f2752a12eda0f49d6375",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "eldencare",
+          "configurations": {
+            "android": "1:1031144470704:android:59f2752a12eda0f49d6375",
+            "ios": "1:1031144470704:ios:e81aa003f3d981549d6375",
+            "web": "1:1031144470704:web:cd12c4f11a063caa9d6375",
+            "windows": "1:1031144470704:web:c31f4b53259829c09d6375"
+          }
+        }
+      }
+    }
+  }
+}

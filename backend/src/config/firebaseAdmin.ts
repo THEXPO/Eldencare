@@ -14,7 +14,7 @@ export function initializeFirebaseAdmin(): admin.app.App | null {
     const rawServiceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
     const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 
-    let credential: admin.Credential | null = null;
+    let credential: admin.credential.Credential | null = null;
 
     if (rawServiceAccount) {
       try {

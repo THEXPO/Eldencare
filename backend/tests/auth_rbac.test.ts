@@ -1,6 +1,10 @@
 import request from 'supertest';
 import { createApp } from '../src/app';
 
+jest.mock('../src/config/env', () => ({
+  config: { nodeEnv: 'test', demoAuthEnabled: true, isConfigured: false },
+}));
+
 const app = createApp();
 
 describe('Authentication & Access Control Middleware', () => {

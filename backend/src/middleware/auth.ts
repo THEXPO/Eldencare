@@ -1,5 +1,4 @@
 import { Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
 import { AuthenticatedRequest, AuthenticatedUser, AppRole } from '../types';
 import { config } from '../config/env';
 import { getAnonymousSupabaseClient, getUserSupabaseClient } from '../config/supabase';
@@ -22,33 +21,27 @@ export async function authenticateToken(
   const token = authHeader.split(' ')[1];
   req.token = token;
 
-  // 1. Check for Demo / Local Test Tokens
-  if (token.startsWith('demo-') || token === 'test-token') {
+  // Demo identities must never bypass authentication against a real database.
+  const isDemoToken = [
+    'demo-patient-token',
+    'demo-caretaker-token',
+    'demo-doctor-token',
+    'test-token',
+  ].includes(token);
+  if (
+    isDemoToken &&
+    config.demoAuthEnabled &&
+    ['development', 'test'].includes(config.nodeEnv) &&
+    !config.isConfigured
+  ) {
     req.user = getDemoUser(token);
     next();
     return;
   }
 
-  // 2. Supabase JWT Authentication
+  // Supabase JWT Authentication
   const anonSupabase = getAnonymousSupabaseClient();
   if (!anonSupabase) {
-    // If Supabase credentials are not configured, allow decoded token in dev
-    try {
-      const decoded = jwt.decode(token) as any;
-      if (decoded && decoded.sub) {
-        req.user = {
-          id: decoded.sub,
-          email: decoded.email || 'user@eldencare.org',
-          fullName: decoded.user_metadata?.full_name || 'EldenCare Member',
-          role: (decoded.user_metadata?.role as AppRole) || 'patient',
-          isDoctorApproved: decoded.user_metadata?.role !== 'doctor',
-          authorizedPatientIds: [decoded.sub, 'p1'],
-        };
-        next();
-        return;
-      }
-    } catch (_) {}
-
     res.status(401).json({ error: 'Unauthorized', message: 'Invalid authentication token.' });
     return;
   }

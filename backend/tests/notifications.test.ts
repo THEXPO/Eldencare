@@ -2,6 +2,10 @@ import request from 'supertest';
 import { createApp } from '../src/app';
 import { isInQuietHours } from '../src/services/scheduler.service';
 
+jest.mock('../src/config/env', () => ({
+  config: { nodeEnv: 'test', demoAuthEnabled: true, isConfigured: false },
+}));
+
 const app = createApp();
 
 describe('Phase 4: Notifications & Automation Tests', () => {

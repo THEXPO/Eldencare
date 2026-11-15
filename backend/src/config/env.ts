@@ -8,6 +8,7 @@ dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 export const config = {
   port: parseInt(process.env.PORT || '3000', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
+  demoAuthEnabled: process.env.ENABLE_DEMO_AUTH === 'true',
   supabase: {
     url: process.env.SUPABASE_URL || '',
     anonKey: process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY || '',

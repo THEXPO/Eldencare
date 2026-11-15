@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "eldencare"
-  }
+    "default": "eldencare",
+    "eldencare": "eldencare"
+  },
+  "targets": {},
+  "etags": {}
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1031144470704",
+    "project_id": "eldencare",
+    "storage_bucket": "eldencare.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031144470704:android:59f2752a12eda0f49d6375",
+        "android_client_info": {
+          "package_name": "com.eldencare.eldencare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqBSh62eHg9C3q4CAYKFjq_GSoNH2Evu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -25,6 +25,19 @@ SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_ANON_KEY=eyJ...
 ```
 
+### Authentication and Local Demos
+
+Real accounts require a configured Supabase project; access tokens are verified
+with Supabase Auth. Missing configuration never enables unverified JWT access.
+
+For a local demo without Supabase, set `ENABLE_DEMO_AUTH=true` and
+`NODE_ENV=development`, and leave the Supabase URL and keys unset (including in
+the root `.env`). Only `demo-patient-token`, `demo-caretaker-token`,
+`demo-doctor-token`, and the legacy `test-token` alias are accepted.
+Demo authentication is disabled by default and is always disabled in production,
+in other environments, or when Supabase is configured. Do not expose a local
+demo server to the internet.
+
 ### Start Local Development Server
 ```bash
 npm run dev
